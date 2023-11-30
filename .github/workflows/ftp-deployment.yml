@@ -1,0 +1,15 @@
+name: CI -> Testing FTP Deployment | Action
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Here is the deployment action
+      - name: Upload from local public_html via FTP
+        uses: airvzxf/ftp-deployment-action@master
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
